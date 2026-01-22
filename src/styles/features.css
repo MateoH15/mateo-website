@@ -1,0 +1,103 @@
+/* Feature Cards Section - Infinite Scroll */
+.hero-features {
+  width: 100%;
+  overflow: hidden;
+  padding: 2rem 0;
+  position: relative;
+}
+
+.hero-features::before,
+.hero-features::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-features::before {
+  left: 0;
+  background: linear-gradient(to right, #d8d9d3, transparent);
+}
+
+.hero-features::after {
+  right: 0;
+  background: linear-gradient(to left, #d8d9d3, transparent);
+}
+
+.features-track {
+  display: flex;
+  gap: 2rem;
+  animation: scroll-left 30s linear infinite;
+  width: max-content;
+}
+
+.features-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-20%);
+  }
+}
+
+.feature-card {
+  max-width: 150px;
+  min-width: 300px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.feature-card h3 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+  color: #1a1a1a;
+  text-transform: uppercase;
+}
+
+.feature-card p {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #4a4a4a;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .feature-card {
+    min-width: 250px;
+  }
+
+  .features-track {
+    animation-duration: 20s;
+  }
+}
+
+@media (min-width: 1800px) {
+  .hero-features {
+    padding: 4rem 0;
+  }
+
+  .feature-card {
+    min-width: 450px;
+    padding: 3rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .feature-card p {
+    font-size: 1.1rem;
+  }
+}
