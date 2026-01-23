@@ -19,7 +19,14 @@ function Hero() {
             Diseño y desarrollo soluciones digitales para emprendedores y
             negocios.
           </p>
-          <button className="hero-cta">
+          <button
+            onClick={() =>
+              document
+                .getElementById("contact")
+                .scrollIntoView({ behavior: "smooth" })
+            }
+            className="hero-cta"
+          >
             <span>CONTACTAME</span>
             <svg
               width="20"

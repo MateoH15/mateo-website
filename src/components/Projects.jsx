@@ -8,6 +8,7 @@ function Projects() {
       year: "2025",
       size: "large",
       color: "#5a6152",
+      link: "https://quantorfinance.com",
     },
     {
       title: "Haffner dermocosmética",
@@ -15,6 +16,7 @@ function Projects() {
       year: "2026",
       size: "medium",
       color: "#8b7d6b",
+      link: "https://haffnerdermocosmetica.com",
     },
     {
       title: "WebMentor",
@@ -22,6 +24,7 @@ function Projects() {
       year: "2025",
       size: "medium",
       color: "#3d4336",
+      link: "https://webmentoragency.site",
     },
   ];
 
@@ -39,6 +42,7 @@ function Projects() {
               className={`bento-item bento-${project.size}`}
               key={index}
               style={{ backgroundColor: project.color }}
+              onClick={() => window.open(project.link, "_blank")}
             >
               <div className="bento-content">
                 <div className="bento-info">

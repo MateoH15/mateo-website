@@ -231,6 +231,12 @@
   transform: translateX(5px);
 }
 
+.success-message {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .contact-container {

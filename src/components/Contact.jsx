@@ -1,6 +1,25 @@
+import { useForm, ValidationError } from "@formspree/react";
+import { useEffect, useState, useRef } from "react";
 import "../styles/contact.css";
 
 function Contact() {
+  const [state, handleSubmit] = useForm("xkojvrpp");
+
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const formRef = useRef(null);
+
+  useEffect(() => {
+    if (state.succeeded) {
+      setShowSuccess(true);
+      formRef.current?.reset();
+      const timer = setTimeout(() => {
+        setShowSuccess(false);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [state.succeeded]);
+
   return (
     <section id="contact" className="contact">
       <div className="contact-container">
@@ -60,7 +79,7 @@ function Contact() {
         </div>
 
         <div className="contact-form-wrapper">
-          <form className="contact-form">
+          <form ref={formRef} className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="name">NOMBRE</label>
               <input
@@ -69,6 +88,11 @@ function Contact() {
                 name="name"
                 placeholder="Tu nombre completo"
                 required
+              />
+              <ValidationError
+                prefix="name"
+                field="name"
+                errors={state.errors}
               />
             </div>
 
@@ -81,6 +105,11 @@ function Contact() {
                 placeholder="Email"
                 required
               />
+              <ValidationError
+                prefix="email"
+                field="email"
+                errors={state.errors}
+              />
             </div>
 
             <div className="form-group">
@@ -91,6 +120,11 @@ function Contact() {
                 name="subject"
                 placeholder="Consulta de proyecto"
                 required
+              />
+              <ValidationError
+                prefix="subject"
+                field="subject"
+                errors={state.errors}
               />
             </div>
 
@@ -103,9 +137,22 @@ function Contact() {
                 placeholder="Háblame de tu proyecto..."
                 required
               ></textarea>
+              <ValidationError
+                prefix="message"
+                field="message"
+                errors={state.errors}
+              />
             </div>
 
-            <button type="submit" className="form-submit-btn">
+            {showSuccess && (
+              <p className="success-message">¡Gracias por tu mensaje!</p>
+            )}
+
+            <button
+              type="submit"
+              disabled={state.submitting}
+              className="form-submit-btn"
+            >
               <span>ENVIAR MENSAJE</span>
               <svg
                 width="20"
