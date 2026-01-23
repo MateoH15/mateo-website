@@ -6,7 +6,7 @@ function Hero() {
     <main id="hero" className="hero">
       <div className="hero-content">
         <div className="hero-text">
-          <p className="hero-greeting">Hola, soy Mateo,</p>
+          <p className="hero-greeting">Hola, soy Mateo.</p>
           <h1 className="hero-title">
             DESARROLLO
             <br />

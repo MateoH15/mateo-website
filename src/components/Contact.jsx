@@ -40,10 +40,18 @@ function Contact() {
             <div className="contact-social">
               <span className="social-label">SÍGUEME</span>
               <div className="social-links">
-                <a href="#" className="social-link">
+                <a
+                  target="_blank"
+                  href="https://www.linkedin.com/in/mateo-herrera-b0b74531b"
+                  className="social-link"
+                >
                   LinkedIn
                 </a>
-                <a href="#" className="social-link">
+                <a
+                  target="_blank"
+                  href="https://www.instagram.com/mateoohe/?hl=es-la%3F%2F"
+                  className="social-link"
+                >
                   Instagram
                 </a>
               </div>

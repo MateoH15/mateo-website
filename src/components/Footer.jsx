@@ -24,6 +24,9 @@ function Footer() {
                   <a href="#header">Inicio</a>
                 </li>
                 <li>
+                  <a href="#services">Servicios</a>
+                </li>
+                <li>
                   <a href="#projects">Proyectos</a>
                 </li>
                 <li>
@@ -36,10 +39,20 @@ function Footer() {
               <h4 className="footer-column-title">Sígueme</h4>
               <ul className="footer-list">
                 <li>
-                  <a href="#">LinkedIn</a>
+                  <a
+                    target="_blank"
+                    href="https://www.linkedin.com/in/mateo-herrera-b0b74531b"
+                  >
+                    LinkedIn
+                  </a>
                 </li>
                 <li>
-                  <a href="#">Instagram</a>
+                  <a
+                    target="_blank"
+                    href="https://www.instagram.com/mateoohe/?hl=es-la%3F%2F"
+                  >
+                    Instagram
+                  </a>
                 </li>
               </ul>
             </div>
