@@ -14,7 +14,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   padding-top: 2rem;
   position: relative;
 }
@@ -136,6 +136,7 @@
     order: 2;
     margin-top: 2.5rem;
     justify-content: center;
+    margin-bottom: 2rem;
   }
 
   .hero-text {
@@ -174,7 +175,7 @@
   }
 
   .hero-title {
-    font-size: 6rem;
+    font-size: 4rem;
   }
 
   .hero-greeting {
@@ -188,6 +189,7 @@
     right: auto;
     top: auto;
     margin: 0 auto;
+    margin-bottom: 2rem;
     border-radius: 20px;
   }
 
@@ -196,6 +198,7 @@
     justify-content: center;
     width: 100%;
     margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 
   .hero-features {
@@ -206,7 +209,7 @@
 
 @media (max-width: 480px) {
   .hero-title {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
   }
 
   .image-circle {
@@ -234,5 +237,6 @@
 
   .hero-image {
     justify-content: center;
+    margin-bottom: 2rem;
   }
 }
