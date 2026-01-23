@@ -7,6 +7,12 @@
   align-items: center;
 }
 
+@media (min-width: 1025px) {
+  .process {
+    padding-top: 3rem;
+  }
+}
+
 .process-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -170,6 +176,10 @@
 }
 
 @media (min-width: 1800px) {
+  .process {
+    padding-top: 2rem;
+  }
+
   .process-content {
     max-width: 1600px;
   }

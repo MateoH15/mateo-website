@@ -8,6 +8,12 @@
   justify-content: space-between;
 }
 
+@media (min-width: 1025px) {
+  .hero {
+    justify-content: flex-start;
+  }
+}
+
 /* Hero Content (Top Section) */
 .hero-content {
   display: grid;
@@ -19,7 +25,13 @@
   position: relative;
 }
 
-/* Left Side - Text Content */
+@media (min-width: 1025px) {
+  .hero-content {
+    margin-bottom: 2.5rem;
+  }
+}
+
+
 .hero-text {
   max-width: 600px;
 }
@@ -221,7 +233,7 @@
 @media (min-width: 1800px) {
   .hero-content {
     max-width: 1600px;
-    margin: 0 auto 6rem;
+    margin: 0 auto 2rem;
     grid-template-columns: 1fr 1.2fr;
     gap: 8rem;
   }

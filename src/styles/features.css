@@ -6,6 +6,12 @@
   position: relative;
 }
 
+@media (min-width: 1025px) {
+  .hero-features {
+    padding-top: 2rem;
+  }
+}
+
 .hero-features::before,
 .hero-features::after {
   content: "";
@@ -42,6 +48,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-20%);
   }
@@ -85,7 +92,7 @@
 
 @media (min-width: 1800px) {
   .hero-features {
-    padding: 4rem 0;
+    padding: 2rem 0 1rem 0;
   }
 
   .feature-card {
