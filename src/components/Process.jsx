@@ -45,7 +45,7 @@ function Process() {
           <div className="process-image-container">
             <img
               src="../assets/process.jpg"
-              alt="Professional design process"
+              alt="Foto Profesional"
             />
           </div>
         </div>

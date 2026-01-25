@@ -1,4 +1,7 @@
 import "../styles/projects.css";
+import logoQuantor from "../assets/logo-quantor.png";
+import logoHaffner from "../assets/logo-haffner.png";
+import logoWebMentor from "../assets/logo-webmentor.png";
 
 function Projects() {
   const projects = [
@@ -7,15 +10,15 @@ function Projects() {
       category: "Dashboard financiero",
       year: "2025",
       size: "large",
-      color: "#5a6152",
+      image: logoQuantor,
       link: "https://quantorfinance.com",
     },
     {
       title: "Haffner dermocosmética",
-      category: "E-commerce (Tienda Nube)",
+      category: "E-commerce",
       year: "2026",
       size: "medium",
-      color: "#8b7d6b",
+      image: logoHaffner,
       link: "https://haffnerdermocosmetica.com",
     },
     {
@@ -23,7 +26,7 @@ function Projects() {
       category: "Agencia de Desarrollo Web",
       year: "2025",
       size: "medium",
-      color: "#3d4336",
+      image: logoWebMentor,
       link: "https://webmentoragency.site",
     },
   ];
@@ -41,7 +44,7 @@ function Projects() {
             <div
               className={`bento-item bento-${project.size}`}
               key={index}
-              style={{ backgroundColor: project.color }}
+              style={{ backgroundImage: `url(${project.image})` }}
               onClick={() => window.open(project.link, "_blank")}
             >
               <div className="bento-content">
