@@ -113,6 +113,22 @@ function Contact() {
             </div>
 
             <div className="form-group">
+              <label htmlFor="number">NÚMERO</label>
+              <input
+                type="number"
+                id="number"
+                name="number"
+                placeholder="Ej: 385 499 7505"
+                required
+              />
+              <ValidationError
+                prefix="number"
+                field="number"
+                errors={state.errors}
+              />
+            </div>
+
+            <div className="form-group">
               <label htmlFor="subject">ASUNTO</label>
               <input
                 type="text"
