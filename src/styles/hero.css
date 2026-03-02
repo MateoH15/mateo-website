@@ -31,7 +31,6 @@
   }
 }
 
-
 .hero-text {
   max-width: 600px;
 }
@@ -112,9 +111,8 @@
   border-radius: 20px 0 0 20px;
   overflow: hidden;
   background: linear-gradient(135deg, #e8e9e3 0%, #c8c9c3 100%);
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.15),
-    0 0 0 10px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px #000;
+  border: 5px solid rgb(139, 139, 139);
   position: absolute;
   right: -5%;
   top: 5%;

@@ -1,4 +1,5 @@
 import "../styles/process.css";
+import processImage from "../assets/mateoherreraimagedesk.jpg";
 
 function Process() {
   return (
@@ -43,10 +44,7 @@ function Process() {
 
         <div className="process-image">
           <div className="process-image-container">
-            <img
-              src="../assets/process.jpg"
-              alt="Foto Profesional"
-            />
+            <img src={processImage} alt="Foto Profesional" />
           </div>
         </div>
       </div>

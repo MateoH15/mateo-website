@@ -1,5 +1,6 @@
 import "../styles/hero.css";
 import Features from "./Features";
+import heroImage from "../assets/mateoherreraimagen.jpg";
 
 function Hero() {
   return (
@@ -43,7 +44,7 @@ function Hero() {
 
         <div className="hero-image">
           <div className="image-circle">
-            <img src="../assets/hero.png" alt="Foto de Mateo" />
+            <img src={heroImage} alt="Mateo Herrera" />
           </div>
         </div>
       </div>

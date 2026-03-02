@@ -109,9 +109,8 @@
   border-radius: 20px;
   overflow: hidden;
   background: linear-gradient(135deg, #5a6152 0%, #3d4336 100%);
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.25),
-    0 0 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px #000;
+  border: 5px solid rgb(139, 139, 139);
   position: relative;
 }
 
@@ -119,9 +118,13 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  transition: transform 0.5s ease;
 }
 
+/* Optional: slight zoom on hover for more dynamic framing */
+.process-image-container:hover img {
+  transform: scale(1.03);
+}
 /* Responsive Design */
 @media (max-width: 1024px) {
   .process-content {
