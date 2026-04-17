@@ -2,6 +2,7 @@ import "../styles/projects.css";
 import logoQuantor from "../assets/logo-quantor.png";
 import logoHaffner from "../assets/logo-haffner.png";
 import logoWebMentor from "../assets/logo-webmentor.png";
+import logoMifud from "../assets/logo-mifud.png";
 
 function Projects() {
   const projects = [
@@ -9,7 +10,7 @@ function Projects() {
       title: "Quantor Finance",
       category: "Dashboard financiero",
       year: "2025",
-      size: "large",
+      size: "medium",
       image: logoQuantor,
       link: "https://quantorfinance.com",
     },
@@ -28,6 +29,14 @@ function Projects() {
       size: "medium",
       image: logoWebMentor,
       link: "https://webmentoragency.site",
+    },
+    {
+      title: "Mifud",
+      category: "Aplicación para crear tu menú digital",
+      year: "2026",
+      size: "medium",
+      image: logoMifud,
+      link: "https://mifud.net",
     },
   ];
 
