@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import "../styles/whatsapp-button.css";
 
 function WhatsAppButton() {
@@ -7,12 +8,28 @@ function WhatsAppButton() {
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
   return (
-    <a
+    <motion.a
       href={whatsappUrl}
       className="contact-button"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contactar"
+      // Entrada: scale desde 0 con spring, con delay para que aparezca después del hero
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
+        delay: 1.2,
+      }}
+      // Hover suave
+      whileHover={{
+        scale: 1.1,
+        transition: { duration: 0.2 },
+      }}
+      // Feedback táctil
+      whileTap={{ scale: 0.9 }}
     >
       <div className="contact-button-content">
         <svg
@@ -26,7 +43,7 @@ function WhatsAppButton() {
         <span className="contact-text">Hablemos</span>
       </div>
       <div className="contact-button-glow"></div>
-    </a>
+    </motion.a>
   );
 }
 

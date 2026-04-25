@@ -1,8 +1,9 @@
 import "../styles/footer.css";
+import AnimatedSection from "./AnimatedSection";
 
 function Footer() {
   return (
-    <footer className="footer">
+    <AnimatedSection as="footer" className="footer" distance={30}>
       <div className="footer-container">
         <div className="footer-top">
           <div className="footer-brand">
@@ -65,7 +66,7 @@ function Footer() {
           </p>
         </div>
       </div>
-    </footer>
+    </AnimatedSection>
   );
 }
 
