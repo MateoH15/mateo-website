@@ -1,23 +1,78 @@
-import { useState, useEffect } from "react";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
 import "../styles/header.css";
 
+/**
+ * Header — Navegación con hide/show en scroll usando GSAP.
+ * Animación de entrada suave. Menú hamburguesa para mobile.
+ */
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
+  const headerRef = useRef(null);
+  const logoRef = useRef(null);
+  const navItemsRef = useRef([]);
 
-  // Detecta la dirección del scroll para ocultar/mostrar el header
-  const { scrollY } = useScroll();
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious();
-    // Solo ocultar si scroll > 100px (para no ocultar inmediatamente)
-    if (latest > previous && latest > 100) {
-      setIsHidden(true); // Scroll down → ocultar
-    } else {
-      setIsHidden(false); // Scroll up → mostrar
-    }
-  });
+    // ── Animación de entrada ──
+    const ctx = gsap.context(() => {
+      gsap.from(header, {
+        opacity: 0,
+        y: -20,
+        duration: 0.5,
+        ease: "power2.out",
+      });
+
+      gsap.from(logoRef.current, {
+        opacity: 0,
+        duration: 0.5,
+        delay: 0.2,
+        ease: "power2.out",
+      });
+
+      gsap.from(navItemsRef.current.filter(Boolean), {
+        opacity: 0,
+        y: -10,
+        duration: 0.4,
+        stagger: 0.08,
+        delay: 0.3,
+        ease: "power2.out",
+      });
+    }, header);
+
+    // ── Hide/Show en scroll ──
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 100 && !isOpen) {
+        // Scroll down → ocultar
+        gsap.to(header, {
+          y: -100,
+          duration: 0.4,
+          ease: "power2.out",
+        });
+      } else {
+        // Scroll up → mostrar
+        gsap.to(header, {
+          y: 0,
+          duration: 0.4,
+          ease: "power2.out",
+        });
+      }
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      ctx.revert();
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     if (isOpen) {
@@ -41,28 +96,10 @@ function Header() {
 
   return (
     <>
-      <motion.header
-        id="header"
-        className="header"
-        // Fade-in suave al cargar
-        initial={{ opacity: 0, y: -20 }}
-        animate={{
-          opacity: 1,
-          y: isHidden && !isOpen ? -100 : 0, // Ocultar al scroll down (no si el menú está abierto)
-        }}
-        transition={{
-          duration: 0.4,
-          ease: [0.25, 0.1, 0.25, 1],
-        }}
-      >
-        <motion.h1
-          className="logo"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
+      <header id="header" className="header" ref={headerRef}>
+        <h1 className="logo" ref={logoRef}>
           <span className="logo-dot">●</span> MATEO
-        </motion.h1>
+        </h1>
 
         <button
           className={`hamburger ${isOpen ? "active" : ""}`}
@@ -85,26 +122,20 @@ function Header() {
                   Contacto: "#contact",
                 };
                 return (
-                  <motion.li
+                  <li
                     key={item}
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 0.4,
-                      delay: 0.3 + index * 0.08,
-                      ease: "easeOut",
-                    }}
+                    ref={(el) => (navItemsRef.current[index] = el)}
                   >
                     <a href={hrefs[item]} onClick={closeMenu}>
                       {item}
                     </a>
-                  </motion.li>
+                  </li>
                 );
               }
             )}
           </ul>
         </nav>
-      </motion.header>
+      </header>
     </>
   );
 }

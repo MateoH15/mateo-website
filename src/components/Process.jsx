@@ -1,115 +1,85 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "../styles/process.css";
 import processImage from "../assets/mateoherreraimagedesk.jpg";
-import AnimatedSection from "./AnimatedSection";
 
-/**
- * Variantes para el stagger de los pasos del proceso.
- */
-const stepsContainerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-const stepVariants = {
-  hidden: { opacity: 0, y: 25 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: [0.25, 0.1, 0.25, 1],
-    },
-  },
-};
+gsap.registerPlugin(ScrollTrigger);
 
 function Process() {
+  const sectionRef = useRef(null);
+  const labelRef = useRef(null);
+  const titleRef = useRef(null);
+  const subtitleRef = useRef(null);
+  const stepsRef = useRef([]);
+  const imageRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const trigger = sectionRef.current;
+
+      gsap.fromTo(labelRef.current,
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", scrollTrigger: { trigger, start: "top 85%", once: true } }
+      );
+      gsap.fromTo(titleRef.current,
+        { opacity: 0, y: 25 },
+        { opacity: 1, y: 0, duration: 0.6, delay: 0.1, ease: "power2.out", scrollTrigger: { trigger, start: "top 85%", once: true } }
+      );
+      gsap.fromTo(subtitleRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.5, delay: 0.15, ease: "power2.out", scrollTrigger: { trigger, start: "top 85%", once: true } }
+      );
+
+      const steps = stepsRef.current.filter(Boolean);
+      if (steps.length > 0) {
+        gsap.fromTo(steps,
+          { opacity: 0, y: 25 },
+          { opacity: 1, y: 0, duration: 0.5, stagger: 0.15, ease: "power2.out", scrollTrigger: { trigger, start: "top 75%", once: true } }
+        );
+      }
+
+      gsap.fromTo(imageRef.current,
+        { opacity: 0, scale: 0.95 },
+        { opacity: 1, scale: 1, duration: 0.7, delay: 0.2, ease: "power2.out", scrollTrigger: { trigger: imageRef.current, start: "top 90%", once: true } }
+      );
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <AnimatedSection as="section" className="process">
+    <section className="process" ref={sectionRef}>
       <div className="process-content">
         <div className="process-text">
-          <motion.span
-            className="process-label"
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-          >
-            PROCESO
-          </motion.span>
-          <motion.h2
-            className="process-title"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-          >
+          <span className="process-label" ref={labelRef}>PROCESO</span>
+          <h2 className="process-title" ref={titleRef}>
             UN PROCESO <span className="process-title-accent">CLARO</span>
-          </motion.h2>
-          <motion.p
-            className="process-subtitle"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
-          >
-            Un enfoque estratégico y creativo que garantiza sitios web
-            funcionales, atractivos y efectivos.
-          </motion.p>
-
-          {/* Pasos del proceso con stagger */}
-          <motion.div
-            className="process-steps"
-            variants={stepsContainerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <motion.div className="process-step" variants={stepVariants}>
+          </h2>
+          <p className="process-subtitle" ref={subtitleRef}>
+            Un enfoque estratégico y creativo que garantiza sitios web funcionales, atractivos y efectivos.
+          </p>
+          <div className="process-steps">
+            <div className="process-step" ref={(el) => (stepsRef.current[0] = el)}>
               <h3>ANÁLISIS & IDEA</h3>
-              <p>
-                Analizo tus objetivos, tu público y las necesidades del proyecto
-                para definir una base sólida.
-              </p>
-            </motion.div>
-
-            <motion.div className="process-step" variants={stepVariants}>
+              <p>Analizo tus objetivos, tu público y las necesidades del proyecto para definir una base sólida.</p>
+            </div>
+            <div className="process-step" ref={(el) => (stepsRef.current[1] = el)}>
               <h3>CONSTRUCCIÓN</h3>
-              <p>
-                Creo interfaces modernas y desarrollo la web con foco en
-                experiencia de usuario y rendimiento.
-              </p>
-            </motion.div>
-
-            <motion.div className="process-step" variants={stepVariants}>
+              <p>Creo interfaces modernas y desarrollo la web con foco en experiencia de usuario y rendimiento.</p>
+            </div>
+            <div className="process-step" ref={(el) => (stepsRef.current[2] = el)}>
               <h3>LANZAMIENTO</h3>
-              <p>
-                Optimización final, pruebas y entrega de un sitio listo para
-                crecer.
-              </p>
-            </motion.div>
-          </motion.div>
+              <p>Optimización final, pruebas y entrega de un sitio listo para crecer.</p>
+            </div>
+          </div>
         </div>
-
-        {/* Imagen con scale + fade sutil */}
-        <motion.div
-          className="process-image"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-        >
+        <div className="process-image" ref={imageRef}>
           <div className="process-image-container">
             <img src={processImage} alt="Foto Profesional" />
           </div>
-        </motion.div>
+        </div>
       </div>
-    </AnimatedSection>
+    </section>
   );
 }
 

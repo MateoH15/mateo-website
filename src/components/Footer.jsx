@@ -1,72 +1,55 @@
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "../styles/footer.css";
-import AnimatedSection from "./AnimatedSection";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Footer() {
+  const footerRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(footerRef.current,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out", scrollTrigger: { trigger: footerRef.current, start: "top 95%", once: true } }
+      );
+    }, footerRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <AnimatedSection as="footer" className="footer" distance={30}>
+    <footer className="footer" ref={footerRef}>
       <div className="footer-container">
         <div className="footer-top">
           <div className="footer-brand">
-            <h3 className="footer-logo">
-              <span className="logo-dot">●</span> MATEO
-            </h3>
-            <p className="footer-tagline">
-              Creo sitios web rápidos, escalables y orientados a resultados.
-              Diseño y desarrollo soluciones digitales para emprendedores y
-              negocios.
-            </p>
+            <h3 className="footer-logo"><span className="logo-dot">●</span> MATEO</h3>
+            <p className="footer-tagline">Creo sitios web rápidos, escalables y orientados a resultados. Diseño y desarrollo soluciones digitales para emprendedores y negocios.</p>
           </div>
-
           <div className="footer-links">
             <div className="footer-column">
               <h4 className="footer-column-title">Navegación</h4>
               <ul className="footer-list">
-                <li>
-                  <a href="#header">Inicio</a>
-                </li>
-                <li>
-                  <a href="#services">Servicios</a>
-                </li>
-                <li>
-                  <a href="#projects">Proyectos</a>
-                </li>
-                <li>
-                  <a href="#contact">Contacto</a>
-                </li>
+                <li><a href="#header">Inicio</a></li>
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#projects">Proyectos</a></li>
+                <li><a href="#contact">Contacto</a></li>
               </ul>
             </div>
-
             <div className="footer-column">
               <h4 className="footer-column-title">Sígueme</h4>
               <ul className="footer-list">
-                <li>
-                  <a
-                    target="_blank"
-                    href="https://www.linkedin.com/in/mateo-herrera-b0b74531b"
-                  >
-                    LinkedIn
-                  </a>
-                </li>
-                <li>
-                  <a
-                    target="_blank"
-                    href="https://www.instagram.com/mateoohe/?hl=es-la%3F%2F"
-                  >
-                    Instagram
-                  </a>
-                </li>
+                <li><a target="_blank" href="https://www.linkedin.com/in/mateo-herrera-b0b74531b">LinkedIn</a></li>
+                <li><a target="_blank" href="https://www.instagram.com/mateoohe/?hl=es-la%3F%2F">Instagram</a></li>
               </ul>
             </div>
           </div>
         </div>
-
         <div className="footer-bottom">
-          <p className="footer-copyright">
-            © {new Date().getFullYear()} Mateo. Todos los derechos reservados.
-          </p>
+          <p className="footer-copyright">© {new Date().getFullYear()} Mateo. Todos los derechos reservados.</p>
         </div>
       </div>
-    </AnimatedSection>
+    </footer>
   );
 }
 
