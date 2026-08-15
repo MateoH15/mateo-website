@@ -109,7 +109,12 @@ export default function AccordionGallery({
               ref={(el) => (mediaRef.current[index] = el)}
               className="ag-panel__media"
             >
-              <img src={item.image} alt={item.label} />
+              <img
+                src={item.image}
+                alt={item.label}
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div className="ag-panel__overlay" />
             {showLabels && (

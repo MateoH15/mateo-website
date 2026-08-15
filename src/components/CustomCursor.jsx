@@ -62,7 +62,7 @@ function CustomCursor() {
       });
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     document.body.addEventListener("mouseenter", handleMouseEnter);
     document.body.addEventListener("mouseleave", handleMouseLeave);
 

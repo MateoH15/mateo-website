@@ -279,7 +279,13 @@ function Header() {
         ref={headerRef}
       >
         <a href="#hero" className="logo" ref={logoRef}>
-          <img src={logoImage} alt="MATEO HERRERA" className="logo-img" />
+          <img
+            src={logoImage}
+            alt="MATEO HERRERA"
+            className="logo-img"
+            decoding="async"
+            fetchpriority="high"
+          />
         </a>
 
         <button

@@ -139,7 +139,12 @@ function Process() {
         </div>
         <div className="process-image" ref={imageRef}>
           <div className="process-image-container">
-            <img src={processImage} alt="Foto Profesional" />
+            <img
+              src={processImage}
+              alt="Foto Profesional"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
         </div>
       </div>

@@ -60,7 +60,7 @@ function Hero() {
         xTo2(0);
       };
 
-      hero.addEventListener("mousemove", handleMouseMove);
+      hero.addEventListener("mousemove", handleMouseMove, { passive: true });
       hero.addEventListener("mouseleave", handleMouseLeave);
 
       return () => {
@@ -76,7 +76,14 @@ function Hero() {
     <main id="hero" className="hero" ref={heroRef}>
       {/* Imagen de fondo */}
       <div className="hero-bg">
-        <img src={heroImage} alt="" aria-hidden="true" />
+        <img
+          src={heroImage}
+          alt="Mateo Herrera - Desarrollador Web"
+          aria-hidden="true"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
       </div>
       {/* Overlay oscuro gradiente */}
       <div className="hero-overlay" />
