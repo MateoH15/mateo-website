@@ -10,7 +10,9 @@
   /* Compensar esquinas de la rotación */
   margin: -3rem 0;
   margin-bottom: 2rem;
-  width: 100%;
+  width: calc(100% + 6vw);
+  margin-left: -3vw;
+  transform-origin: center center;
 
   /* Card flotante */
   z-index: 10;
