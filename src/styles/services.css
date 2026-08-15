@@ -174,17 +174,12 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background:
-    linear-gradient(
-      180deg,
-      transparent 45%,
-      color-mix(in srgb, var(--ag-overlay) 78%, transparent) 100%
-    ),
-    color-mix(
-      in srgb,
-      var(--ag-overlay) calc(var(--ag-dim, 0.35) * 100%),
-      transparent
-    );
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0.1) 0%,
+    rgba(10, 10, 10, 0.7) 65%,
+    rgba(10, 10, 10, 0.92) 100%
+  );
 }
 
 .ag-panel__label {
@@ -206,7 +201,7 @@
   border-radius: 3px;
   background: var(--ag-accent);
   opacity: 0;
-  box-shadow: 0 0 12px color-mix(in srgb, var(--ag-accent) 60%, transparent);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
 }
 
 .ag-panel__text {

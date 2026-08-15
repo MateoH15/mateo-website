@@ -26,6 +26,10 @@ export default function AccordionGallery({
   const barRef = useRef([]);
 
   useEffect(() => {
+    const isMobile = window.innerWidth <= 768;
+    const animDuration = isMobile ? 0.35 : duration;
+    const animEase = isMobile ? "power2.out" : ease;
+
     panelsRef.current.forEach((panel, i) => {
       if (!panel) return;
       const isActive = i === activeIndex;
@@ -35,32 +39,31 @@ export default function AccordionGallery({
 
       gsap.to(panel, {
         flexGrow: flexVal,
-        duration: duration,
-        ease: ease,
+        duration: animDuration,
+        ease: animEase,
       });
 
-      // Media grayscale and scale
+      // Media scale (skip filter: grayscale on mobile for 60fps GPU performance)
       if (mediaRef.current[i]) {
-        gsap.to(mediaRef.current[i], {
-          filter:
-            isActive && grayscale
-              ? "grayscale(0%)"
-              : grayscale
-                ? "grayscale(100%)"
-                : "grayscale(0%)",
-          scale: isActive ? 1.05 : 1,
-          duration: duration,
-          ease: ease,
-        });
+        const mediaProps = {
+          scale: isActive ? 1.04 : 1,
+          duration: animDuration,
+          ease: animEase,
+        };
+        if (!isMobile && grayscale) {
+          mediaProps.filter = isActive ? "grayscale(0%)" : "grayscale(100%)";
+        } else if (isMobile) {
+          mediaProps.filter = "none";
+        }
+        gsap.to(mediaRef.current[i], mediaProps);
       }
 
-      // Text and bar opacity/transform animation
+      // Text and bar opacity animation
       if (textRef.current[i]) {
         gsap.to(textRef.current[i], {
-          opacity: isActive ? 1 : 0.7,
-          x: isActive ? 0 : -5,
-          duration: duration * 0.8,
-          ease: ease,
+          opacity: isActive ? 1 : 0.75,
+          duration: animDuration * 0.8,
+          ease: animEase,
         });
       }
 
@@ -68,8 +71,8 @@ export default function AccordionGallery({
         gsap.to(barRef.current[i], {
           opacity: isActive ? 1 : 0,
           scaleY: isActive ? 1 : 0,
-          duration: duration * 0.8,
-          ease: ease,
+          duration: animDuration * 0.8,
+          ease: animEase,
         });
       }
     });
