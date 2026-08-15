@@ -32,7 +32,7 @@
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.15em;
-  color: #6b7566;
+  color: #000000a6;
   text-transform: uppercase;
   display: block;
   margin-bottom: 0.5rem;
@@ -43,7 +43,7 @@
   font-weight: 700;
   line-height: 1.1;
   margin-bottom: 1.5rem;
-  color: #1a1a1a;
+  color: #292929;
   text-transform: uppercase;
   letter-spacing: -0.01em;
 }
@@ -57,7 +57,7 @@
 .process-subtitle {
   font-size: 0.95rem;
   line-height: 1.6;
-  color: #4a4a4a;
+  color: #292929;
   margin-bottom: 3rem;
   font-style: italic;
 }
@@ -70,13 +70,13 @@
 }
 
 .process-step {
-  border-left: 3px solid #1a1a1a;
+  border-left: 3px solid #292929;
   padding-left: 1.5rem;
   transition: all 0.3s ease;
 }
 
 .process-step:hover {
-  border-left-color: #666;
+  border-left-color: #e8e9e3;
   transform: translateX(10px);
 }
 
@@ -85,14 +85,14 @@
   font-weight: 700;
   letter-spacing: 0.05em;
   margin-bottom: 0.5rem;
-  color: #1a1a1a;
+  color: #292929;
   text-transform: uppercase;
 }
 
 .process-step p {
   font-size: 0.95rem;
   line-height: 1.6;
-  color: #4a4a4a;
+  color: #292929b7;
 }
 
 /* Right Side - Image */
@@ -112,6 +112,7 @@
   box-shadow: 0 10px 30px #000;
   border: 5px solid rgb(139, 139, 139);
   position: relative;
+  rotate: 2deg;
 }
 
 .process-image-container img {

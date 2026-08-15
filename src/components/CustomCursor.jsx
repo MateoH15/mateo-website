@@ -18,7 +18,10 @@ function CustomCursor() {
     // Detectar touch device
     const isTouchDevice =
       "ontouchstart" in window || navigator.maxTouchPoints > 0;
-    if (isTouchDevice) return;
+    if (isTouchDevice) {
+      cursor.style.display = "none";
+      return;
+    }
 
     // quickTo para movimiento con inercia (lerp)
     const xTo = gsap.quickTo(cursor, "x", {

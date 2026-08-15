@@ -1,21 +1,31 @@
 /* Skills Section */
 .skills {
-  padding: 6rem 5%;
-  background-color: var(--color-bg);
-  min-height: 60vh;
+  background-color: #292929;
   display: flex;
   align-items: center;
+  overflow: hidden;
+  padding: 1.5rem 1%;
+  rotate: -1.5deg;
+
+  /* Compensar esquinas de la rotación */
+  margin: -3rem 0;
+  margin-bottom: 2rem;
+  width: 100%;
+
+  /* Card flotante */
+  z-index: 10;
+  position: relative;
+  box-shadow:
+    0 -12px 40px rgba(0, 0, 0, 0.3),
+    0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
 .skills-container {
-  max-width: 1200px;
-  margin: 0 auto;
   width: 100%;
 }
 
 .skills-header {
   text-align: center;
-  margin-bottom: 4rem;
 }
 
 .skills-label {
@@ -42,96 +52,136 @@
   font-weight: 400;
 }
 
-/* Grid centrado con mucho whitespace */
-.skills-grid {
+/* Marquee Container */
+.skills-marquee-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
-  max-width: 900px;
-  margin: 0 auto;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
 }
 
-/* Skill Item — Elemento flotante */
-.skill-item {
+.skills-marquee {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  user-select: none;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 2%,
+    black 98%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 2%,
+    black 98%,
+    transparent 100%
+  );
+}
+
+.skills-marquee-track {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 1rem 1.8rem;
-  border: 1px solid var(--color-border);
+  gap: 1.25rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.skills-marquee-track.ltr {
+  animation: marquee-right-to-left 60s linear infinite;
+}
+
+.skills-marquee:hover .skills-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-right-to-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Skill Pill */
+.skill-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.85rem 1.8rem;
   border-radius: 50px;
-  background-color: transparent;
-  cursor: default;
-  transition: border-color 0.3s var(--ease-out),
-              box-shadow 0.3s var(--ease-out);
-  user-select: none;
-}
-
-.skill-item:hover {
-  border-color: rgba(0, 0, 0, 0.25);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-}
-
-.skill-emoji {
-  font-size: 1.3rem;
-  line-height: 1;
-}
-
-.skill-name {
   font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--color-text);
+  font-weight: 600;
   letter-spacing: 0.02em;
+  transition:
+    transform 0.3s var(--ease-out),
+    background-color 0.3s var(--ease-out),
+    color 0.3s var(--ease-out),
+    border-color 0.3s var(--ease-out);
+  cursor: pointer;
+}
+
+.skill-pill.solid {
+  background-color: #e8e9e3;
+  color: #292929;
+  border: 1px solid #292929;
+}
+
+.skill-pill.solid:hover {
+  background-color: #292929;
+  color: #e8e9e3;
+  border: 1px solid #e8e9e3;
+}
+
+.skill-pill.outline {
+  background-color: transparent;
+  border: 1px solid #e8e9e3;
+  color: #e8e9e3;
+}
+
+.skill-pill.outline:hover {
+  background-color: #e8e9e3;
+  color: #292929;
+}
+
+.skill-dot {
+  font-size: 0.7rem;
+  opacity: 0.8;
 }
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .skills {
-    padding: 4rem 5%;
+    padding: 1rem 0;
+    margin-bottom: 0.5rem;
   }
 
   .skills-title {
     font-size: 2rem;
   }
 
-  .skills-grid {
-    gap: 1rem;
-  }
-
-  .skill-item {
-    padding: 0.8rem 1.4rem;
-  }
-
-  .skill-name {
-    font-size: 0.85rem;
+  .skill-pill {
+    padding: 0.7rem 1.4rem;
+    font-size: 0.88rem;
   }
 }
 
 @media (max-width: 480px) {
+  .skills {
+    padding: 0.75rem 0;
+    margin-bottom: 0.25rem;
+  }
+
   .skills-title {
     font-size: 1.6rem;
   }
 
-  .skill-item {
-    padding: 0.7rem 1.2rem;
-  }
-}
-
-@media (min-width: 1800px) {
-  .skills-container {
-    max-width: 1400px;
-  }
-
-  .skills-grid {
-    max-width: 1100px;
-    gap: 2rem;
-  }
-
-  .skill-item {
-    padding: 1.2rem 2.2rem;
-  }
-
-  .skill-name {
-    font-size: 1.1rem;
+  .skill-pill {
+    padding: 0.5rem 1.1rem;
+    font-size: 0.82rem;
   }
 }

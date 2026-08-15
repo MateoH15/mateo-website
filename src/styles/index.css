@@ -18,19 +18,30 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   font-family: "Inter", sans-serif;
-  background-color: var(--color-bg);
+  background-color: #e8e9e3;
   color: var(--color-text);
-  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
   position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 /* ── Custom Cursor ── */
@@ -47,9 +58,10 @@ html {
   opacity: 0;
   mix-blend-mode: difference;
   will-change: transform;
-  transition: width 0.3s var(--ease-smooth),
-              height 0.3s var(--ease-smooth),
-              opacity 0.3s ease;
+  transition:
+    width 0.3s var(--ease-smooth),
+    height 0.3s var(--ease-smooth),
+    opacity 0.3s ease;
 }
 
 .custom-cursor.visible {

@@ -97,7 +97,7 @@ function Projects() {
             <div
               className={`bento-item bento-${project.size}`}
               key={index}
-              style={{ backgroundImage: `url(${project.image})`, opacity: 0, transform: "translateY(35px)" }}
+              style={{ backgroundImage: `url(${project.image})` }}
               onClick={() => window.open(project.link, "_blank")}
               ref={(el) => (cardsRef.current[index] = el)}
             >
