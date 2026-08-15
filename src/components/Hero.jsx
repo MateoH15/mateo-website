@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import "../styles/hero.css";
-import heroImage from "../assets/mateoherreraimagen.jpg";
+import heroImage from "../assets/mateoherreraimagen.webp";
 
 function Hero() {
   const heroRef = useRef(null);
@@ -100,7 +100,10 @@ function Hero() {
               className="hero-cta-circle"
               onClick={() => {
                 const t = document.getElementById("contact");
-                if (t) window.__lenis ? window.__lenis.scrollTo(t) : t.scrollIntoView({ behavior: "smooth" });
+                if (t)
+                  window.__lenis
+                    ? window.__lenis.scrollTo(t)
+                    : t.scrollIntoView({ behavior: "smooth" });
               }}
               aria-label="Contactar"
             >

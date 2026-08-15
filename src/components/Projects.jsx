@@ -2,10 +2,10 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "../styles/projects.css";
-import logoQuantor from "../assets/logo-quantor.png";
-import logoHaffner from "../assets/logo-haffner.png";
-import logoWebMentor from "../assets/logo-webmentor.png";
-import logoMifud from "../assets/logo-mifud.png";
+import logoQuantor from "../assets/logo-quantor.webp";
+import logoHaffner from "../assets/logo-haffner.webp";
+import logoWebMentor from "../assets/logo-webmentor.webp";
+import logoMifud from "../assets/logo-mifud.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,10 +17,38 @@ function Projects() {
   const animatedRef = useRef(false);
 
   const projects = [
-    { title: "Quantor Finance", category: "Dashboard financiero", year: "2025", size: "medium", image: logoQuantor, link: "https://quantorfinance.com" },
-    { title: "Haffner dermocosmética", category: "E-commerce", year: "2026", size: "medium", image: logoHaffner, link: "https://haffnerdermocosmetica.com" },
-    { title: "WebMentor", category: "Agencia de Desarrollo Web", year: "2025", size: "medium", image: logoWebMentor, link: "https://webmentoragency.site" },
-    { title: "Mifud", category: "Aplicación para crear tu menú digital", year: "2026", size: "medium", image: logoMifud, link: "https://mifud.net" },
+    {
+      title: "Quantor Finance",
+      category: "Dashboard financiero",
+      year: "2025",
+      size: "medium",
+      image: logoQuantor,
+      link: "https://quantorfinance.com",
+    },
+    {
+      title: "Haffner dermocosmética",
+      category: "E-commerce",
+      year: "2026",
+      size: "medium",
+      image: logoHaffner,
+      link: "https://haffnerdermocosmetica.com",
+    },
+    {
+      title: "WebMentor",
+      category: "Agencia de Desarrollo Web",
+      year: "2025",
+      size: "medium",
+      image: logoWebMentor,
+      link: "https://webmentoragency.site",
+    },
+    {
+      title: "Mifud",
+      category: "Aplicación para crear tu menú digital",
+      year: "2026",
+      size: "medium",
+      image: logoMifud,
+      link: "https://mifud.net",
+    },
   ];
 
   useEffect(() => {
@@ -28,17 +56,36 @@ function Projects() {
       const cards = cardsRef.current.filter(Boolean);
 
       // Header
-      gsap.fromTo(labelRef.current,
+      gsap.fromTo(
+        labelRef.current,
         { opacity: 0, y: 15 },
-        { opacity: 1, y: 0, duration: 0.4, ease: "power2.out",
-          scrollTrigger: { trigger: sectionRef.current, start: "top 85%", once: true }
-        }
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.4,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 85%",
+            once: true,
+          },
+        },
       );
-      gsap.fromTo(titleRef.current,
+      gsap.fromTo(
+        titleRef.current,
         { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.5, delay: 0.1, ease: "power2.out",
-          scrollTrigger: { trigger: sectionRef.current, start: "top 85%", once: true }
-        }
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          delay: 0.1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 85%",
+            once: true,
+          },
+        },
       );
 
       // Cards entrance — use ScrollTrigger callback to animate manually
@@ -50,9 +97,16 @@ function Projects() {
           onEnter: () => {
             if (animatedRef.current) return;
             animatedRef.current = true;
-            gsap.fromTo(cards,
+            gsap.fromTo(
+              cards,
               { opacity: 0, y: 35 },
-              { opacity: 1, y: 0, duration: 0.5, stagger: 0.12, ease: "power2.out" }
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                stagger: 0.12,
+                ease: "power2.out",
+              },
             );
           },
         });
@@ -62,7 +116,13 @@ function Projects() {
         const fallbackTimer = setTimeout(() => {
           if (!animatedRef.current) {
             animatedRef.current = true;
-            gsap.to(cards, { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: "power2.out" });
+            gsap.to(cards, {
+              opacity: 1,
+              y: 0,
+              duration: 0.5,
+              stagger: 0.08,
+              ease: "power2.out",
+            });
           }
         }, 800);
 
@@ -70,12 +130,34 @@ function Projects() {
         cards.forEach((card) => {
           const arrow = card.querySelector(".bento-arrow");
           card.addEventListener("mouseenter", () => {
-            gsap.to(card, { scaleX: 1.03, scaleY: 1.03, boxShadow: "0 20px 40px rgba(0,0,0,0.2)", duration: 0.3, ease: "power2.out" });
-            if (arrow) gsap.to(arrow, { rotation: -45, duration: 0.3, ease: "power2.out" });
+            gsap.to(card, {
+              scaleX: 1.03,
+              scaleY: 1.03,
+              boxShadow: "0 20px 40px rgba(0,0,0,0.2)",
+              duration: 0.3,
+              ease: "power2.out",
+            });
+            if (arrow)
+              gsap.to(arrow, {
+                rotation: -45,
+                duration: 0.3,
+                ease: "power2.out",
+              });
           });
           card.addEventListener("mouseleave", () => {
-            gsap.to(card, { scaleX: 1, scaleY: 1, boxShadow: "0 4px 20px rgba(0,0,0,0.1)", duration: 0.3, ease: "power2.out" });
-            if (arrow) gsap.to(arrow, { rotation: 0, duration: 0.3, ease: "power2.out" });
+            gsap.to(card, {
+              scaleX: 1,
+              scaleY: 1,
+              boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+              duration: 0.3,
+              ease: "power2.out",
+            });
+            if (arrow)
+              gsap.to(arrow, {
+                rotation: 0,
+                duration: 0.3,
+                ease: "power2.out",
+              });
           });
         });
 
@@ -89,8 +171,12 @@ function Projects() {
     <section id="projects" className="projects" ref={sectionRef}>
       <div className="projects-container">
         <div className="projects-header">
-          <span className="projects-label" ref={labelRef}>PORTAFOLIO</span>
-          <h2 className="projects-title" ref={titleRef}>PROYECTOS</h2>
+          <span className="projects-label" ref={labelRef}>
+            PORTAFOLIO
+          </span>
+          <h2 className="projects-title" ref={titleRef}>
+            PROYECTOS
+          </h2>
         </div>
         <div className="bento-grid">
           {projects.map((project, index) => (
@@ -102,13 +188,24 @@ function Projects() {
               ref={(el) => (cardsRef.current[index] = el)}
             >
               <div className="bento-content">
-                <div className="bento-info"><span className="bento-year">{project.year}</span></div>
+                <div className="bento-info">
+                  <span className="bento-year">{project.year}</span>
+                </div>
                 <div className="bento-details">
                   <h3 className="bento-title">{project.title}</h3>
                   <p className="bento-category">{project.category}</p>
                 </div>
                 <button className="bento-arrow">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 17L17 7M17 7H7M17 7V17" /></svg>
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
                 </button>
               </div>
             </div>

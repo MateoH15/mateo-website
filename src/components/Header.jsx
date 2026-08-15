@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import "../styles/header.css";
-import logoImage from "../assets/MATEO-HERRERA-LOGO-blanco-Photoroom.png";
+import logoImage from "../assets/MATEO-HERRERA-LOGO-blanco-Photoroom.webp";
 
 /**
  * Header — Navegación con hide/show en scroll usando GSAP.
